@@ -4,6 +4,10 @@ async function main() {
 
     const person = await prisma.person.findMany();
     console.log(person);
+    if(!person) {
+        console.log("empty");
+        
+    }
 
 }
 main()

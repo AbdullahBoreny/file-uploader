@@ -12,14 +12,34 @@ datasource db {
   provider = "postgresql"
 }
 
-model Person {
-  id   Int    @id @default(autoincrement())
-  name String
-}
-
 model Session {
   id        String   @id
   sid       String   @unique
   data      String
   expiresAt DateTime
+}
+
+model Folder {
+  id    Int    @id @default(autoincrement())
+  name  String
+  files File[]
+
+  @@map("folders")
+}
+
+model File {
+  id       Int     @id @default(autoincrement())
+  name     String
+  folder   Folder? @relation(fields: [folderId], references: [id])
+  folderId Int?
+
+  @@map("files")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  name     String @unique
+  password String
+
+  @@map("users")
 }
