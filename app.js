@@ -8,7 +8,7 @@ import "dotenv/config";
 import { PrismaSessionStore } from '@quixo3/prisma-session-store';
 import { prisma } from "./ORM/lib/prisma.js";
 
-
+import indexRouter from "./router.js";
 app.use(express.json());
 app.set("views", path.join(import.meta.dirname, "views"));
 app.set("view engine", "ejs");
@@ -37,11 +37,11 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
 
+app.use(indexRouter);
 
-
-app.listen(3000, () => {
+app.listen(2000, () => {
     // eslint-disable-next-line no-console
-    console.log(`Backend running on port ${3000}`);
+    console.log(`Backend running on port ${2000}`);
 });
 
 

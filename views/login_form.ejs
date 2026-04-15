@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Log In</title>
+    <link rel="stylesheet" href="login_form.css">
+</head>
+
+<body>
+
+    <div class="card">
+
+        <% if (user) { %>
+
+            <div class="welcome">
+                <h1>WELCOME BACK <%= user.name %>
+                </h1>
+
+                <a href="/log-out">Log out</a>
+            </div>
+
+            <% } else { %>
+
+                <%- include("partials/login_errors.ejs") %>
+
+                    <h1>Please log in</h1>
+
+                    <form action="/log-in" method="POST">
+
+                        <label for="username">Username</label>
+                        <input id="username" name="username" type="text" required />
+
+                        <label for="password">Password</label>
+                        <input id="password" name="password" type="password" required />
+
+                        <button type="submit">Log In</button>
+
+
+                    </form>
+
+                    <% } %>
+                        <a href="sign-up">sign up</a>
+
+    </div>
+
+</body>
+
+</html>

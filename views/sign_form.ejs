@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="sign_form.css">
+</head>
+
+<body>
+
+    <form method="post" action="/sign-up">
+
+        <%- include("partials/errors.ejs") %>
+
+            <label for="name">Name</label>
+            <input name="name" type="text" required>
+
+            <label for="email">Email</label>
+            <input name="email" type="text" required>
+
+            <label for="password">Password</label>
+            <input name="password" type="password" required>
+
+            <label for="passwordConfirm">Confirm Password</label>
+            <input name="passwordConfirm" type="password" required>
+
+
+            <button type="submit">Sign Up</button>
+
+            <a href="/log-in">Already have an account?</a>
+
+    </form>
+
+</body>
+
+</html>
