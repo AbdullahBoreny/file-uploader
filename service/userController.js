@@ -1,4 +1,3 @@
-import multer from "multer";
 import { prisma } from '../ORM/lib/prisma.js';
 
 import passport from "passport";
