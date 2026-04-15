@@ -1,8 +1,10 @@
 import { Router } from "express";
-import { uploadFilesGet, uploadFilesPost } from "./uploadController.js";
+import { uploadFilesGet, uploadFilesPost } from "./service/uploadController.js";
+import { createFolderGet, createFolderPost } from "./folderController.js";
 import { verifyUser } from "./service/userController.js";
 const uploadRouter = Router();
 uploadRouter.get('/upload', verifyUser, uploadFilesGet);
 uploadRouter.post('/upload', uploadFilesPost);
-
+uploadRouter.get('/folder', createFolderGet);
+uploadRouter.post('/folder', createFolderPost);
 export default uploadRouter;

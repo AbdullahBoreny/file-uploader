@@ -1,5 +1,5 @@
 import multer from "multer";
-const upload = multer({ dest: './uploads' });
+const upload = multer({ dest: '../uploads' });
 
 export const uploadFilesGet = async (req, res) => {
 
@@ -7,13 +7,14 @@ export const uploadFilesGet = async (req, res) => {
         res.render("upload");
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Server error" });
+        res.status(500).json({ error: "cant render error" });
     }
 };
 export const uploadFilesPost = [
     upload.single('avatar'),
     async (req, res) => {
         try {
+            console.log(req.file);
             res.json(req.file);
         } catch (error) {
             console.error(error);
@@ -21,3 +22,4 @@ export const uploadFilesPost = [
         }
     }
 ];
+
