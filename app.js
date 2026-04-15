@@ -8,7 +8,7 @@ import "dotenv/config";
 import { PrismaSessionStore } from '@quixo3/prisma-session-store';
 import { prisma } from "./ORM/lib/prisma.js";
 
-import indexRouter from "./router.js";
+import userRouter from "./userRouter.js";
 app.use(express.json());
 app.set("views", path.join(import.meta.dirname, "views"));
 app.set("view engine", "ejs");
@@ -37,7 +37,7 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
 
-app.use(indexRouter);
+app.use(userRouter);
 
 app.listen(2000, () => {
     // eslint-disable-next-line no-console

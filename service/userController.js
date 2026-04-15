@@ -1,9 +1,9 @@
 import multer from "multer";
-import { prisma } from './ORM/lib/prisma.js';
+import { prisma } from '../ORM/lib/prisma.js';
 
 import passport from "passport";
-import initPassport from "./service/pass.js";
-import * as userService from './service/userService.js';
+import initPassport from "./pass.js";
+import * as userService from './userService.js';
 import { matchedData, validationResult } from "express-validator";
 import bcrypt from "bcryptjs";
 initPassport();
@@ -69,7 +69,6 @@ export const createUserPost = [
 ];
 
 export const createUserGet = (req, res) => {
-    console.log(req.session);
 
     res.render("sign_form");
 };
