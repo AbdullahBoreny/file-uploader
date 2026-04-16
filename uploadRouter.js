@@ -5,7 +5,7 @@ import { verifyUser } from "./service/userController.js";
 const uploadRouter = Router();
 uploadRouter.get('/upload', verifyUser, uploadFilesGet);
 
-uploadRouter.post('/upload', verifyUser, uploadFilesPost);
+uploadRouter.post('/:id/upload', verifyUser, uploadFilesPost);
 uploadRouter.get('/folder', verifyUser, createFolderGet);
 uploadRouter.post('/folder', verifyUser, createFolderPost);
 uploadRouter.get("/folder/:id", verifyUser, folderContentGet);

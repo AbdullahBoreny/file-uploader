@@ -1,6 +1,8 @@
 import multer from "multer";
 import { createClient } from '@supabase/supabase-js';
 import "dotenv/config";
+import { prisma } from '../ORM/lib/prisma.js';
+
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
@@ -9,6 +11,7 @@ const supabase = createClient(process.env["SUB_URL"], process.env["SUB_KEY"]);
 
 
 export const uploadMiddleWare = async (req, res, next) => {
+    console.log("im middleware?");
     try {
         const file = req.file;
 
@@ -31,7 +34,6 @@ export const uploadMiddleWare = async (req, res, next) => {
             return res.status(500).send(error.message);
         }
 
-        console.log("Uploaded:", data);
 
         next();
     } catch (err) {
@@ -39,10 +41,31 @@ export const uploadMiddleWare = async (req, res, next) => {
         res.status(500).send("Server error");
     }
 };
-
+export const saveFile = async (req, res, next) => {
+    const { id } = req.params;
+    console.log("supposed to be an id of a folder", id);
+    const { data } = await supabase
+        .storage
+        .from('boreny')
+        .getPublicUrl(`uploads/${req.file.originalname}`);
+    try {
+        await prisma.file.create({
+            data: {
+                link: data.publicUrl,
+                name: req.file.originalname,
+                folderId: Number(id)
+            }
+        });
+        next();
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Server error" });
+    }
+};
 export const uploadFilesPost = [
     upload.single('avatar'),
     uploadMiddleWare,
+    saveFile,
     (req, res) => {
         try {
             console.log(req.file);

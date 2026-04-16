@@ -28,7 +28,7 @@ export const folderContentGet = async (req, res) => {
     try {
         const folder = await prisma.folder.findFirst({
             where: { id: Number(id) },
-            select: { files: true }
+            select: { files: true, id: true }
 
         });
         console.log(folder);

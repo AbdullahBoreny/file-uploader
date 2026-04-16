@@ -8,9 +8,14 @@
 </head>
 
 <body>
-   
+    <form method="POST" action="/<%= folder.id %>/upload" enctype="multipart/form-data">
+        <label for="avatar">Upload file:</label>
+        <input name="avatar" type="file">
+        <input type="submit" value="submit">
+    </form>
     <ul>
         <% if (locals.folder) {%>
+
             <% folder.files.forEach(function(file) { %>
                 <li>ID: <%= file.id %>
                 </li>

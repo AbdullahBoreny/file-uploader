@@ -44,9 +44,9 @@ const errorHandler = (err, req, res, next) => {
 app.use(uploadRouter);
 app.use(userRouter);
 app.use(errorHandler);
-app.listen(2000, () => {
+app.listen(2001, () => {
     // eslint-disable-next-line no-console
-    console.log(`Backend running on port ${2000}`);
+    console.log(`Backend running on port ${2001}`);
 });
 
 
