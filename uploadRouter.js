@@ -4,9 +4,10 @@ import { createFolderGet, createFolderPost, folderContentGet } from "./folderCon
 import { verifyUser } from "./service/userController.js";
 const uploadRouter = Router();
 uploadRouter.get('/upload', verifyUser, uploadFilesGet);
-uploadRouter.post('/upload', uploadFilesPost);
-uploadRouter.get('/folder', createFolderGet);
-uploadRouter.post('/folder', createFolderPost);
-uploadRouter.get("/folder/:id", folderContentGet);
+
+uploadRouter.post('/upload', verifyUser, uploadFilesPost);
+uploadRouter.get('/folder', verifyUser, createFolderGet);
+uploadRouter.post('/folder', verifyUser, createFolderPost);
+uploadRouter.get("/folder/:id", verifyUser, folderContentGet);
 
 export default uploadRouter;
