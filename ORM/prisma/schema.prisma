@@ -28,10 +28,11 @@ model Folder {
 }
 
 model File {
-  id       Int     @id @default(autoincrement())
-  name     String  @unique
-  folder   Folder? @relation(fields: [folderId], references: [id])
-  folderId Int?
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  folder    Folder?  @relation(fields: [folderId], references: [id])
+  folderId  Int?
+  createdAt DateTime @default(now())
 
   @@map("files")
 }

@@ -7,7 +7,7 @@ export const uploadFilesGet = async (req, res) => {
         res.render("upload");
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "cant render error" });
+        res.status(500).json({ error: "cant render upload error" });
     }
 };
 export const uploadFilesPost = [
