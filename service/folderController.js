@@ -1,4 +1,3 @@
-import { body, matchedData, validationResult } from 'express-validator';
 import { prisma } from '../ORM/lib/prisma.js';
 
 export const createFolderGet = async (req, res) => {
@@ -6,7 +5,7 @@ export const createFolderGet = async (req, res) => {
         const folders = await prisma.folder.findMany(
             {
                 where: { userId: req.user.id },
-                select: { name: true }
+                select: { name: true, id: true }
             }
         );
         console.log(folders);

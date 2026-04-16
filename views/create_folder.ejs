@@ -17,13 +17,17 @@
     <ul>
         <% if (folders && folders.length> 0) { %>
             <% folders.forEach(function(folder) { %>
-                <li>
-                    Name: <%= folder.name %><br>
 
-                </li>
+                <a href="/folder/<%= folder.id %>">
+                    <li>
+                        <%= folder.name %><br>
+
+
+                    </li>
+                </a>
                 <% }) %>
                     <% } else { %>
-                        <li>No folders yet yet</li>
+                        <li>No folders yet</li>
                         <% } %>
     </ul>
 </body>

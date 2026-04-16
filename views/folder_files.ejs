@@ -13,22 +13,25 @@
     <ul>
         <% if (folder && folder.files.length> 0) { %>
             <% folder.files.forEach(function(file) { %>
-
+                <h1>
+                    <%=folder.name%>
+                </h1>
                 <li>
                     Name: <%= file.name %><br>
                         createdAt: <%= file.createdAt.toLocaleString() %><br>
                             <a href="<%= file.link %>">link</a>
                 </li>
-                <form method="POST" action="/<%= folder.id %>/upload" enctype="multipart/form-data">
-                    <input name="avatar" type="file">
-                    <br>
-                    <input type="submit" value="add">
-                </form>
                 <% }); %>
                     <% } else { %>
                         <li>No files yet</li>
                         <% } %>
     </ul>
+    <form method="POST" action="/<%= folder.id %>/upload" enctype="multipart/form-data">
+        <input name="avatar" type="file">
+        <br>
+        <input type="submit" value="add">
+    </form>
+    <a href="/folder">Back</a>
 
 
 </body>
