@@ -43,11 +43,12 @@ export const uploadMiddleWare = async (req, res, next) => {
 };
 export const saveFile = async (req, res, next) => {
     const { id } = req.params;
+     const fileName = req.file.originalname.replace(/[^a-zA-Z0-9.\-_]/g, "_");
     console.log("supposed to be an id of a folder", id);
     const { data } = await supabase
         .storage
         .from('boreny')
-        .getPublicUrl(`uploads/${req.file.originalname}`);
+        .getPublicUrl(`uploads/${fileName}`);
     try {
         await prisma.file.create({
             data: {
@@ -68,8 +69,8 @@ export const uploadFilesPost = [
     saveFile,
     (req, res) => {
         try {
-            console.log(req.file);
-            res.json(req.file);
+            const { id } = req.params;
+            res.redirect(`/folder/${id}`);
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: "cant upload error" });
@@ -77,12 +78,3 @@ export const uploadFilesPost = [
     }
 ];
 
-export const uploadFilesGet = async (req, res) => {
-
-    try {
-        res.render("upload");
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "cant render upload error" });
-    }
-};

@@ -1,4 +1,4 @@
-import { prisma } from './ORM/lib/prisma.js';
+import { prisma } from '../ORM/lib/prisma.js';
 
 export const createFolderGet = async (req, res) => {
     try {
@@ -10,14 +10,13 @@ export const createFolderGet = async (req, res) => {
 };
 export const createFolderPost = async (req, res) => {
     const name = req.body.folder;
-    console.log(name);
     try {
         await prisma.folder.create({
             data: {
                 name: name,
             }
         });
-        res.redirect("/folder");
+        res.render("/folder");
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "couldn't create folder error" });
@@ -28,10 +27,9 @@ export const folderContentGet = async (req, res) => {
     try {
         const folder = await prisma.folder.findFirst({
             where: { id: Number(id) },
-            select: { files: true, id: true }
+            select: { files: true, id: true, name: true }
 
         });
-        console.log(folder);
         res.render("folder_files", { folder: folder });
     } catch (error) {
         console.error(error);

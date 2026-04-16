@@ -1,10 +1,8 @@
 import { Router } from "express";
-import { uploadFilesGet, uploadFilesPost, } from "./service/uploadController.js";
-import { createFolderGet, createFolderPost, folderContentGet } from "./folderController.js";
-import { verifyUser } from "./service/userController.js";
+import { uploadFilesPost, } from "../service/uploadController.js";
+import { createFolderGet, createFolderPost, folderContentGet } from "../service/folderController.js";
+import { verifyUser } from "../service/userController.js";
 const uploadRouter = Router();
-uploadRouter.get('/upload', verifyUser, uploadFilesGet);
-
 uploadRouter.post('/:id/upload', verifyUser, uploadFilesPost);
 uploadRouter.get('/folder', verifyUser, createFolderGet);
 uploadRouter.post('/folder', verifyUser, createFolderPost);

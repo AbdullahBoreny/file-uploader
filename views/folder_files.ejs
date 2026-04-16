@@ -8,30 +8,28 @@
 </head>
 
 <body>
-    <form method="POST" action="/<%= folder.id %>/upload" enctype="multipart/form-data">
-        <label for="avatar">Upload file:</label>
-        <input name="avatar" type="file">
-        <input type="submit" value="submit">
-    </form>
+    <h1>Folder <%= folder.name %>
+    </h1>
+
     <ul>
-        <% if (locals.folder) {%>
-
+        <% if (folder.files && folder.files.length> 0) { %>
             <% folder.files.forEach(function(file) { %>
-                <li>ID: <%= file.id %>
-                </li>
-                <li>Name: <%= file.name %>
-                </li>
-                <li>folderId: <%= file.folderId %>
-                </li>
                 <li>
-                    createdAt: <%=file.createdAt.toLocaleString()%>
+                    Name: <%= file.name %><br>
+                        createdAt: <%= file.createdAt.toLocaleString() %><br>
+                            <a href="<%= file.link %>">link</a>
                 </li>
-
-
                 <% }); %>
-                    <% } %>
-
+                    <% } else { %>
+                        <li>No files yet</li>
+                        <% } %>
     </ul>
+
+    <form method="POST" action="/<%= folder.id %>/upload" enctype="multipart/form-data">
+        <input name="avatar" type="file">
+        <br>
+        <input type="submit" value="add">
+    </form>
 </body>
 
 </html>

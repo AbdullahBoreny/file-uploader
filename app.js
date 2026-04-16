@@ -7,14 +7,14 @@ import expressSession from "express-session";
 import "dotenv/config";
 import { PrismaSessionStore } from '@quixo3/prisma-session-store';
 import { prisma } from "./ORM/lib/prisma.js";
+app.use(express.static(path.join(import.meta.dirname, "public")));
 
-import userRouter from "./userRouter.js";
-import uploadRouter from "./uploadRouter.js";
+import userRouter from "./routes/userRouter.js";
+import uploadRouter from "./routes/uploadRouter.js";
 app.use(express.json());
 app.set("views", path.join(import.meta.dirname, "views"));
 app.set("view engine", "ejs");
 app.use(morgan("dev"));
-app.use(express.static(path.join(import.meta.dirname, "public")));
 app.use(
     expressSession({
         cookie: {

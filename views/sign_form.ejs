@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
-    <link rel="stylesheet" href="sign_form.css">
+    <link rel="stylesheet" href="/sign_form.css">
 </head>
 
 <body>
@@ -15,16 +15,16 @@
         <%- include("partials/errors.ejs") %>
 
             <label for="name">Name</label>
-            <input name="name" type="text" required>
+            <input autocomplete="additional-name" id="name" name="name" type="text" required>
 
             <label for="email">Email</label>
-            <input name="email" type="text" required>
+            <input autocomplete="email" id="email" name="email" type="text" required>
 
             <label for="password">Password</label>
-            <input name="password" type="password" required>
+            <input autocomplete="current-password" id="password" name="password" type="password" required>
 
             <label for="passwordConfirm">Confirm Password</label>
-            <input name="passwordConfirm" type="password" required>
+            <input autocomplete="new-password" id="passwordConfirm" name="passwordConfirm" type="password" required>
 
 
             <button type="submit">Sign Up</button>
