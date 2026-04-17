@@ -4,19 +4,15 @@ import "dotenv/config";
 import { prisma } from '../ORM/lib/prisma.js';
 
 const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
-
-// @ts-ignore
+const upload = multer({ storage: storage, limits: { fileSize: 300 * 1024 } });
 const supabase = createClient(process.env["SUB_URL"], process.env["SUB_KEY"]);
+
 
 
 export const uploadMiddleWare = async (req, res, next) => {
     try {
-        const file = req.file;
 
-        if (!file) {
-            return res.status(400).send("No file uploaded");
-        }
+        const file = req.file;
 
         const fileName = file.originalname.replace(/[^a-zA-Z0-9.\-_]/g, "_");
 
@@ -30,19 +26,19 @@ export const uploadMiddleWare = async (req, res, next) => {
 
         if (error) {
             console.log("Upload error:", error);
-            return res.status(500).send(error.message);
+            return res.status(500).json(error.message);
         }
 
 
         next();
     } catch (err) {
-        console.error(err);
-        res.status(500).send("Server error");
+        console.error('error' + err);
+        res.status(500).json("Server error");
     }
 };
 export const saveFile = async (req, res, next) => {
     const { id } = req.params;
-     const fileName = req.file.originalname.replace(/[^a-zA-Z0-9.\-_]/g, "_");
+    const fileName = req.file.originalname.replace(/[^a-zA-Z0-9.\-_]/g, "_");
     console.log("supposed to be an id of a folder", id);
     const { data } = await supabase
         .storage
@@ -63,7 +59,9 @@ export const saveFile = async (req, res, next) => {
     }
 };
 export const folderContentPost = [
+
     upload.single('avatar'),
+
     uploadMiddleWare,
     saveFile,
     (req, res) => {

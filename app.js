@@ -36,16 +36,18 @@ app.use(
 app.use(passport.session());
 
 app.use(express.urlencoded({ extended: false }));
-// eslint-disable-next-line no-unused-vars
-const errorHandler = (err, req, res, next) => {
-    console.error(err);
-    res.status(500).json({ message: "Internal Server Error" });
-};
+
 app.use(uploadRouter);
 app.use(userRouter);
-app.use(errorHandler);
+app.use((err, req, res, next) => {
+    console.error(err.stack); 
+    res.status(err.statusCode || 500).json({
+        status: 'error',
+        message: err.message || 'Internal Server Error'
+    });
+});
+
 app.listen(2001, () => {
-    // eslint-disable-next-line no-console
     console.log(`Backend running on port ${2001}`);
 });
 

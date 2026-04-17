@@ -14,7 +14,6 @@ export default defineConfig([
             semi: "error",
             "no-unused-vars": "error",
             "prefer-const": "error",
-            "no-console": "warn",
             "no-undef": "error",
         },
     },
