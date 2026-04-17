@@ -32,3 +32,8 @@ export const validateUser = [
         .trim()
 ];
 */
+export const validateFolder = [
+    body("folder")
+        .notEmpty()
+        .withMessage("cant be empty")
+];
