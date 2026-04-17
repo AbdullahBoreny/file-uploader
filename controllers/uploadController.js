@@ -10,40 +10,36 @@ const supabase = createClient(process.env["SUB_URL"], process.env["SUB_KEY"]);
 
 
 export const uploadMiddleWare = async (req, res, next) => {
-    try {
-
-        const file = req.file;
-
-        const fileName = file.originalname.replace(/[^a-zA-Z0-9.\-_]/g, "_");
-
-        const { data, error } = await supabase
-            .storage
-            .from("boreny")
-            .upload(`uploads/${fileName}`, file.buffer, {
-                contentType: file.mimetype,
-                upsert: true,
-            });
-
-        if (error) {
-            console.log("Upload error:", error);
-            return res.status(500).json(error.message);
-        }
 
 
-        next();
-    } catch (err) {
-        console.error('error' + err);
-        res.status(500).json("Server error");
+    const file = req.file;
+
+    const fileName = file.originalname.replace(/[^a-zA-Z0-9.\-_]/g, "_");
+    const filePath = `${req.user.name}/${fileName}`;
+    req.filePath = filePath;
+    const { data, error } = await supabase
+        .storage
+        .from("boreny")
+        .upload(filePath, file.buffer, {
+            contentType: file.mimetype,
+            upsert: true,
+        });
+    console.log(data.fullPath);
+    if (error) {
+        console.log("Upload error:", error);
+        return res.status(500).json(error.message);
     }
+
+    next();
 };
+
 export const saveFile = async (req, res, next) => {
     const { id } = req.params;
-    const fileName = req.file.originalname.replace(/[^a-zA-Z0-9.\-_]/g, "_");
-    console.log("supposed to be an id of a folder", id);
+    const remotePath = req.filePath;
     const { data } = await supabase
         .storage
         .from('boreny')
-        .getPublicUrl(`uploads/${fileName}`);
+        .getPublicUrl(remotePath);
     try {
         await prisma.file.create({
             data: {

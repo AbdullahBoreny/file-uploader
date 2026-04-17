@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        document.querySelector("#name").value = getSavedValue("name");
+        document.querySelector("#email").value = getSavedValue("email");
+        document.querySelector("#password").value = getSavedValue("password");
+        document.querySelector("#passwordConfirm").value = getSavedValue("passwordConfirm");
+
+        function saveValue(e) {
+            let id = e.id;
+            let val = e.value; 
+            localStorage.setItem(id, val);
+        }
+        function getSavedValue(v) {
+
+            if (!localStorage.getItem(v)) {
+                return "";
+            }
+            return localStorage.getItem(v);
+        }
+    </script>
+</body>
+
+</html>

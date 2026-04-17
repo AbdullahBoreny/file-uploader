@@ -15,22 +15,28 @@
         <%- include("partials/errors.ejs") %>
 
             <label for="name">Name</label>
-            <input autocomplete="additional-name" id="name" name="name" type="text" required>
+            <input onfocus="styles.focus" onkeyup="saveValue(this)" autocomplete="additional-name" id="name" name="name"
+                type="text" required>
 
             <label for="email">Email</label>
-            <input autocomplete="email" id="email" name="email" type="text" required>
+            <input onkeyup="saveValue(this)" autocomplete="email" id="email" name="email" type="text" required>
 
             <label for="password">Password</label>
-            <input autocomplete="current-password" id="password" name="password" type="password" required>
+            <input onkeyup="saveValue(this)" autocomplete="current-password" id="password" name="password"
+                type="password" required>
 
             <label for="passwordConfirm">Confirm Password</label>
-            <input autocomplete="new-password" id="passwordConfirm" name="passwordConfirm" type="password" required>
+            <input onkeyup="saveValue(this)" autocomplete="new-password" id="passwordConfirm" name="passwordConfirm"
+                type="password" required>
 
 
             <button type="submit">Sign Up</button>
-
+            <button type="button" onclick="localStorage.clear();
+            window.location.reload()
+            ">clear all</button>
             <a href="/log-in">Already have an account?</a>
 
+            <%- include("script.ejs") %>
     </form>
 
 </body>
