@@ -15,7 +15,7 @@
         <input type="submit" value="submit">
     </form>
     <ul>
-        <% if (folders && folders.length> 0) { %>
+        <% if (typeof folders !=="undefined" && folders.length> 0) { %>
             <% folders.forEach(function(folder) { %>
 
                 <a href="/folder/<%= folder.id %>">
@@ -27,8 +27,9 @@
                 </a>
                 <% }) %>
                     <% } else { %>
-                        <li>No folders yet</li>
-                        <% } %>
+                        <%- include("partials/404.ejs") %>
+                            <li>No folders yet</li>
+                            <% } %>
     </ul>
 </body>
 

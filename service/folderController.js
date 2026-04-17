@@ -32,19 +32,18 @@ export const createFolderPost = [
         }
     }
 ];
-
 export const folderContentGet = async (req, res) => {
     const { id } = req.params;
-    try {
-        const folder = await prisma.folder.findFirst({
-            where: { id: Number(id) },
-            select: { files: true, id: true, name: true }
 
-        });
-        console.log(folder);
-        res.render("folder_files", { folder: folder });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Server error" });
+    const folder = await prisma.folder.findUnique({
+        where: { id: Number(id) },
+        select: { files: true, id: true, name: true }
+    });
+
+    if (!folder) {
+        res.render('create_folder', { err: "not found" });
+        return;
     }
+
+    res.render("folder_files", { folder });
 };

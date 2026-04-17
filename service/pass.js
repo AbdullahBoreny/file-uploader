@@ -8,18 +8,19 @@ export default function initPassport() {
     passport.use(
         new LocalStrategy(async (name, password, done) => {
             try {
+                const err = 'Incorrect username or password';
                 const user = await prisma.user.findUnique({
                     where: { name },
                 });
 
                 if (!user) {
-                    return done(null, false, { message: "Incorrect username" });
+                    return done(null, false, { message: err });
                 }
 
                 const match = await bcrypt.compare(password, user.password);
 
                 if (!match) {
-                    return done(null, false, { message: "Incorrect password" });
+                    return done(null, false, { message: err });
                 }
 
                 return done(null, user);

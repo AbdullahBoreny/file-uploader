@@ -11,7 +11,6 @@ const supabase = createClient(process.env["SUB_URL"], process.env["SUB_KEY"]);
 
 
 export const uploadMiddleWare = async (req, res, next) => {
-    console.log("im middleware?");
     try {
         const file = req.file;
 
@@ -63,7 +62,7 @@ export const saveFile = async (req, res, next) => {
         res.status(500).json({ error: "Server error" });
     }
 };
-export const uploadFilesPost = [
+export const folderContentPost = [
     upload.single('avatar'),
     uploadMiddleWare,
     saveFile,
