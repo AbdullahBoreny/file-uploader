@@ -31,6 +31,24 @@ export const uploadRemotely = async (req, res, next) => {
 
     next();
 };
+export const fileLinkGet = async (req, res) => {
+    const { fileId } = req.params;
+    
+    try {
+        const data = await prisma.file.findUnique({
+            where: { id: Number(fileId) },
+            select: { path: true }
+        });
+        console.log(data.path);
+        
+        const signedUrl = await signUrl(data.path);
+        res.redirect(signedUrl);
+        
+    } catch (error) {
+        console.error(error);
+        res.json(error.message);
+    }
+};
 async function signUrl(remotePath) {
     const { data } = await supabase
         .storage
@@ -42,10 +60,8 @@ async function signUrl(remotePath) {
 export const createFile = async (req, res, next) => {
     const { id } = req.params;
     const remotePath = req.filePath;
-    console.log(remotePath);
 
-    const url = await signUrl(remotePath);
-    req.session.url = url;
+
 
     try {
         await prisma.file.create({
@@ -70,7 +86,6 @@ export const folderContentPost = [
     (req, res) => {
         try {
             const { id } = req.params;
-            console.log(req.session.url);
 
             res.redirect(`/folder/${id}`);
         } catch (error) {
