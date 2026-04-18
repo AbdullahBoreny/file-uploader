@@ -21,7 +21,10 @@
                 <li>
                     Name: <%= file.name %><br>
                         createdAt: <%= file.createdAt.toLocaleString() %><br>
-                            <a href="<%= file.link %>">link</a>
+
+                            <form method="GET" action="/file/<%= file.id %>/link">
+                                <button type="submit">Generate Link</button>
+                            </form>
                 </li>
                 <% }); %>
                     <% } else { %>
