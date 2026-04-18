@@ -3,14 +3,18 @@ import { prisma } from '../ORM/lib/prisma.js';
 import * as userService from '../service/userService.js';
 export const createFolderGet = async (req, res) => {
     try {
+
+        const message = req.session.deleteMessage;
+        req.session.deleteMessage = "";
         const folders = await prisma.folder.findMany(
             {
                 where: { userId: req.user.id },
                 select: { name: true, id: true }
             }
         );
-        console.log(folders);
-        res.render('create_folder', { folders: folders });
+
+        res.render('create_folder', { folders: folders, message: message });
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "couldn't vew folder form error" });
@@ -62,8 +66,8 @@ export const removeFolderPost = async (req, res) => {
         const result = await prisma.folder.delete({
             where: { id: Number(id), userId: req.user.id }
         });
-        res.locals.deleteMessage = `${result.name} deleted successfully`;
-        console.log(res.locals.deleteMessage);
+        const message = `${result.name} deleted successfully`;
+        req.session.deleteMessage = message;
         res.redirect("/folder");
     } catch (error) {
         console.error(error);

@@ -40,15 +40,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(uploadRouter);
 app.use(userRouter);
 app.use((err, req, res, next) => {
-    console.error(err.stack); 
+    console.error(err.stack);
     res.status(err.statusCode || 500).json({
         status: 'error',
         message: err.message || 'Internal Server Error'
     });
 });
 
-app.listen(2001, () => {
-    console.log(`Backend running on port ${2001}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Backend running on port ${process.env.PORT}`);
 });
 
 
