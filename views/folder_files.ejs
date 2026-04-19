@@ -5,42 +5,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Files</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: white;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .file {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        img {
+            border: 3px solid #4CAF50;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.1);
+        }
+
+        .meta {
+            font-size: 14px;
+            color: #555;
+        }
+
+        a, button {
+            margin-top: 8px;
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        a {
+            background: #4CAF50;
+            color: white;
+        }
+
+        button {
+            background: #2196F3;
+            color: white;
+        }
+
+        form {
+            margin-top: 8px;
+        }
+
+        .upload-box {
+            margin-top: 25px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #avatar {
+            margin-bottom: 10px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 15px;
+        }
+    </style>
 </head>
 
 <body>
 
+    <% if (typeof folder !== 'undefined') { %>
+        <h1>📁 Folder: <%= folder.name %></h1>
 
+        <ul>
+            <% if (folder.files.length > 0) { %>
+                <% folder.files.forEach(function(file) { %>
+                    <li>
+                        <div class="file">
+                            <img height="50" width="50" src="/file/<%=file.id%>/download">
 
-    <ul>
-        <% if (typeof folder !=='undefined' && folder.files.length> 0) { %>
+                            <div>
+                                <div><strong><%= file.name %></strong></div>
 
-            <h1>
-                <%= folder.name %>
-            </h1>
-            <% folder.files.forEach(function(file) { %>
-                <li>
-                    Name: <%= file.name %><br>
-                        createdAt: <%= file.createdAt.toLocaleString() %><br>
+                                <div class="meta">
+                                    Created: <%= file.createdAt.toLocaleString() %>
+                                </div>
 
-                            <form method="GET" action="/file/<%= file.id %>/link">
-                                <button type="submit">Share Link for two minutes</button>
-                            </form>
+                                <form method="GET" action="/file/<%= file.id %>/link">
+                                    <button type="submit">Share Link (2 min)</button>
+                                </form>
 
-                            <a download="<%= file.name %>" href="/file/<%=file.id%>/download">download</a>
-                         
-                </li>
-                <% }); %>
-                    <% } else { %>
-                        <li>No files yet</li>
-                        <% } %>
-    </ul>
-    <form method="POST" action="/folder/<%= folder.id %>" enctype="multipart/form-data">
-        <input id="avatar" name="avatar" type="file">
-        <br>
-        <input type="submit" value="add">
-    </form>
-    <a href="/folder">Back</a>
+                                <a href="/file/<%=file.id%>/download" download="<%= file.name %>">
+                                    Download
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                <% }) %>
+            <% } else { %>
+                <li>No files yet</li>
+            <% } %>
+        </ul>
 
+        <div class="upload-box">
+            <form method="POST" action="/folder/<%= folder.id %>" enctype="multipart/form-data">
+                <input id="avatar" name="avatar" type="file">
+                <br>
+                <input type="submit" value="Add File">
+            </form>
+        </div>
+
+        <a class="back" href="/folder">⬅ Back</a>
+    <% } %>
 
 </body>
 

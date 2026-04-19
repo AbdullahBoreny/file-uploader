@@ -5,7 +5,10 @@ export const createFolderGet = async (req, res) => {
     try {
 
         const message = req.session.deleteMessage;
-        req.session.deleteMessage = "";
+        const errors = req.session.errors;
+        req.session.deleteMessage = null;
+
+        req.session.errors = null;
         const folders = await prisma.folder.findMany(
             {
                 where: { userId: req.user.id },
@@ -13,7 +16,7 @@ export const createFolderGet = async (req, res) => {
             }
         );
 
-        res.render('create_folder', { folders: folders, message: message });
+        return res.render('create_folder', { folders: folders, message: message, errors: errors });
 
     } catch (error) {
         console.error(error);
@@ -24,10 +27,11 @@ export const createFolderPost = [
     userService.validateFolder,
     async (req, res) => {
         try {
-            const errors = validationResult(req);
+            let errors = validationResult(req);
             if (!errors.isEmpty()) {
-                console.log(errors.array());
-                return res.render("create_folder", { errors: errors.array() });
+                req.session.errors = errors.array();
+                res.redirect("/folder");
+                return;
             }
             const { folder } = matchedData(req);
 
@@ -68,7 +72,7 @@ export const removeFolderPost = async (req, res) => {
         });
         const message = `${result.name} deleted successfully`;
         req.session.deleteMessage = message;
-        res.redirect("/folder");
+        res.redirect('/folder');
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "couldn't delete folder" });

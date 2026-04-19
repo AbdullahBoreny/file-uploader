@@ -23,7 +23,6 @@ export const userLoginGet = (req, res) => {
 
 
     const errors = req.session.messages;
-    console.log(errors);
 
     req.session.messages = [];
     res.render("login_form", { user: req.user, errors: errors });
