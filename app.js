@@ -48,7 +48,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(process.env.PORT, () => {
-    console.log(`Backend running on port ${process.env.PORT}`);
+    console.log(`Backend running on http://localhost:${process.env.PORT}/ ${process.env.PORT}`);
 });
 
 

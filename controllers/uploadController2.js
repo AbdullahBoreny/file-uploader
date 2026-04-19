@@ -8,8 +8,28 @@ const upload = multer({ storage: storage, limits: { fileSize: 300 * 1024 } });
 const supabase = createClient(process.env["SUB_URL"], process.env["SUB_KEY"]);
 
 
+export const fileDownloadGet = async (req, res) => {
+
+    const { path } = await prisma.file.findUnique({
+        where: { id: Number(req.params.fileId) }
+    });
+
+    const { data, error } = await supabase
+        .storage
+        .from('boreny')
+        .download(path);
+    const buf = await data.arrayBuffer();
+    console.log(buf);
+    
+    res.send(Buffer.from(buf));
+
+
+};
+
+
 
 export const uploadRemotely = async (req, res, next) => {
+
 
 
     const file = req.file;
@@ -33,17 +53,18 @@ export const uploadRemotely = async (req, res, next) => {
 };
 export const fileLinkGet = async (req, res) => {
     const { fileId } = req.params;
-    
+
     try {
         const data = await prisma.file.findUnique({
             where: { id: Number(fileId) },
             select: { path: true }
         });
-        console.log(data.path);
-        
+
+
+
         const signedUrl = await signUrl(data.path);
         res.redirect(signedUrl);
-        
+
     } catch (error) {
         console.error(error);
         res.json(error.message);
@@ -60,7 +81,6 @@ async function signUrl(remotePath) {
 export const createFile = async (req, res, next) => {
     const { id } = req.params;
     const remotePath = req.filePath;
-
 
 
     try {
