@@ -23,7 +23,7 @@
                         createdAt: <%= file.createdAt.toLocaleString() %><br>
 
                             <form method="GET" action="/file/<%= file.id %>/link">
-                                <button type="submit">Generate Link</button>
+                                <button type="submit">Share Link for two minutes</button>
                             </form>
 
                             <a download="<%= file.name %>" href="/file/<%=file.id%>/download">download</a>

@@ -19,7 +19,6 @@ export const fileDownloadGet = async (req, res) => {
         .from('boreny')
         .download(path);
     const buf = await data.arrayBuffer();
-    console.log(buf);
     
     res.send(Buffer.from(buf));
 
