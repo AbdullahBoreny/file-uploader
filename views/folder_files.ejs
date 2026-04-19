@@ -12,7 +12,7 @@
 
 
     <ul>
-        <% if (folder && folder.files.length> 0) { %>
+        <% if (typeof folder !=='undefined' && folder.files.length> 0) { %>
 
             <h1>
                 <%= folder.name %>
@@ -25,6 +25,9 @@
                             <form method="GET" action="/file/<%= file.id %>/link">
                                 <button type="submit">Generate Link</button>
                             </form>
+
+                            <a download="<%= file.name %>" href="/file/<%=file.id%>/download">download</a>
+                         
                 </li>
                 <% }); %>
                     <% } else { %>
@@ -32,7 +35,7 @@
                         <% } %>
     </ul>
     <form method="POST" action="/folder/<%= folder.id %>" enctype="multipart/form-data">
-        <input name="avatar" type="file">
+        <input id="avatar" name="avatar" type="file">
         <br>
         <input type="submit" value="add">
     </form>
