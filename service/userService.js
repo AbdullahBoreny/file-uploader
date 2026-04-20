@@ -47,6 +47,11 @@ export const validateUser = [
 
 export const validateFolder = [
     body("folder")
-        .notEmpty()
-        .withMessage("cant be empty")
+        .notEmpty().withMessage("cant be empty")
+        .custom(async (value, { req }) => {
+            const folder = await prisma.folder.findFirst({ where: { name: value, userId: req.user.id } });
+            console.log(folder);
+            if (folder) throw new Error("Folder already exist");
+            return true;
+        }),
 ];

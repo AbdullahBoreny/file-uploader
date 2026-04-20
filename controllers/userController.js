@@ -1,8 +1,8 @@
 import { prisma } from '../ORM/lib/prisma.js';
 
 import passport from "passport";
-import initPassport from "./pass.js";
-import { validateUser } from './userService.js';
+import initPassport from "../service/pass.js";
+import { validateUser } from '../service/userService.js';
 import { matchedData, validationResult } from "express-validator";
 import bcrypt from "bcryptjs";
 initPassport();
