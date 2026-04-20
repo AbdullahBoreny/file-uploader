@@ -54,13 +54,7 @@
         font-size: 14px;
     }
 
-    a {
-        text-align: center;
-        margin-top: 10px;
-        font-size: 13px;
-        color: #0077ff;
-        text-decoration: none;
-    }
+   
 
     a:hover {
         text-decoration: underline;

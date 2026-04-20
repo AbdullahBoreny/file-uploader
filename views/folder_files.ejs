@@ -109,7 +109,7 @@
                 <% folder.files.forEach(function(file) { %>
                     <li>
                         <div class="file">
-                            <img height="50" width="50" src="/file/<%=file.id%>/download">
+                            <img height="50" width="50" src="/upload/file/<%=file.id%>/download">
 
                             <div>
                                 <div><strong>
@@ -120,11 +120,11 @@
                                     Created: <%= file.createdAt.toLocaleString() %>
                                 </div>
 
-                                <form method="GET" action="/file/<%= file.id %>/link">
+                                <form method="GET" action="/upload/file/<%= file.id %>/link">
                                     <button type="submit">Share Link (2 min)</button>
                                 </form>
 
-                                <a href="/file/<%=file.id%>/download" download="<%= file.name %>">
+                                <a href="/upload/file/<%=file.id%>/download" download="<%= file.name %>">
                                     Download
                                 </a>
                             </div>
@@ -137,14 +137,14 @@
         </ul>
 
         <div class="upload-box">
-            <form method="POST" action="/folder/<%= folder.id %>" enctype="multipart/form-data">
+            <form method="POST" action="/upload/folder/<%= folder.id %>" enctype="multipart/form-data">
                 <input id="avatar" name="avatar" type="file">
                 <br>
                 <input type="submit" value="Add File">
             </form>
         </div>
 
-        <a class="back" href="/folder">⬅ Back</a>
+        <a class="back" href="/upload/folder">⬅ Back</a>
         <% } %>
 
 </body>

@@ -11,6 +11,7 @@ app.use(express.static(path.join(import.meta.dirname, "public")));
 
 import userRouter from "./routes/userRouter.js";
 import uploadRouter from "./routes/uploadRouter.js";
+import { verifyUser } from "./controllers/userController.js";
 app.use(express.json());
 app.set("views", path.join(import.meta.dirname, "views"));
 app.set("view engine", "ejs");
@@ -37,7 +38,7 @@ app.use(passport.session());
 
 app.use(express.urlencoded({ extended: false }));
 
-app.use(uploadRouter);
+app.use('/upload', verifyUser, uploadRouter);
 app.use(userRouter);
 app.use((err, req, res, next) => {
     console.error(err.stack);

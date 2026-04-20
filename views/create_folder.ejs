@@ -26,7 +26,7 @@
                     <% } %>
         </div>
 
-        <form method="POST" action="/folder">
+        <form method="POST" action="/upload/folder">
             <label for="folder">Create Folder:</label><br><br>
             <input name="folder" type="text" placeholder="Folder name">
             <input type="submit" value="Create">
@@ -37,12 +37,12 @@
 
                 <% folders.forEach(function(folder) { %>
                     <li>
-                        <a class="folder-link" href="/folder/<%= folder.id %>">
+                        <a class="folder-link" href="/upload/folder/<%= folder.id %>">
                             📁 <%= folder.name %>
                         </a>
 
                         <div class="actions">
-                            <form action="/<%= folder.id %>/folder/delete" method="POST"
+                            <form action="/upload/<%= folder.id %>/folder/delete" method="POST"
                                 onsubmit="return confirm('Are you sure you want to delete this folder?');">
                                 <button type="submit">Delete</button>
                             </form>

@@ -19,7 +19,7 @@ export const fileDownloadGet = async (req, res) => {
         .from('boreny')
         .download(path);
     const buf = await data.arrayBuffer();
-    
+
     res.send(Buffer.from(buf));
 
 
@@ -28,11 +28,8 @@ export const fileDownloadGet = async (req, res) => {
 
 
 export const uploadRemotely = async (req, res, next) => {
-
-
-
+    if (typeof req.file === 'undefined') throw new Error("empty aren't allowed");
     const file = req.file;
-
     const fileName = file.originalname.replace(/[^a-zA-Z0-9.\-_]/g, "_");
     const filePath = `${req.user.name}/${fileName}`;
     req.filePath = filePath;
@@ -55,11 +52,8 @@ export const fileLinkGet = async (req, res) => {
 
     try {
         const data = await prisma.file.findUnique({
-            where: { id: Number(fileId) },
-            select: { path: true }
+            where: { id: Number(fileId) }, select: { path: true }
         });
-
-
 
         const signedUrl = await signUrl(data.path);
         res.redirect(signedUrl);
@@ -70,9 +64,7 @@ export const fileLinkGet = async (req, res) => {
     }
 };
 async function signUrl(remotePath) {
-    const { data } = await supabase
-        .storage
-        .from('boreny')
+    const { data } = await supabase.storage.from('boreny')
         .createSignedUrl(remotePath, 120);
 
     return data.signedUrl;
@@ -96,21 +88,20 @@ export const createFile = async (req, res, next) => {
         res.status(500).json({ error: "Server error" });
     }
 };
-export const folderContentPost = [
 
+const uploadMwChain = [
     upload.single('avatar'),
-
     uploadRemotely,
     createFile,
     (req, res) => {
         try {
             const { id } = req.params;
 
-            res.redirect(`/folder/${id}`);
+            res.redirect(`/upload/folder/${id}`);
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: "cant upload error" });
         }
-    }
-];
+    }];
 
+export const folderContentPost = uploadMwChain;

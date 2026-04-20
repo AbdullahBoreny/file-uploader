@@ -30,7 +30,7 @@ export const createFolderPost = [
             let errors = validationResult(req);
             if (!errors.isEmpty()) {
                 req.session.errors = errors.array();
-                res.redirect("/folder");
+                res.redirect("/upload/folder");
                 return;
             }
             const { folder } = matchedData(req);
@@ -42,7 +42,7 @@ export const createFolderPost = [
                     userId: req.user.id
                 }
             });
-            res.redirect(`/folder/${result.id}`);
+            res.redirect(`/upload/folder/${result.id}`);
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: "couldn't create folder error" });
@@ -72,7 +72,7 @@ export const removeFolderPost = async (req, res) => {
         });
         const message = `${result.name} deleted successfully`;
         req.session.deleteMessage = message;
-        res.redirect('/folder');
+        res.redirect('/upload/folder');
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "couldn't delete folder" });
