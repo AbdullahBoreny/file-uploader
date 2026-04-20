@@ -54,7 +54,8 @@
             color: #555;
         }
 
-        a, button {
+        a,
+        button {
             margin-top: 8px;
             display: inline-block;
             padding: 6px 10px;
@@ -99,18 +100,21 @@
 
 <body>
 
-    <% if (typeof folder !== 'undefined') { %>
-        <h1>📁 Folder: <%= folder.name %></h1>
+    <% if (typeof folder !=='undefined' ) { %>
+        <h1>📁 Folder: <%= folder.name %>
+        </h1>
 
         <ul>
-            <% if (folder.files.length > 0) { %>
+            <% if (folder.files.length> 0) { %>
                 <% folder.files.forEach(function(file) { %>
                     <li>
                         <div class="file">
                             <img height="50" width="50" src="/file/<%=file.id%>/download">
 
                             <div>
-                                <div><strong><%= file.name %></strong></div>
+                                <div><strong>
+                                        <%= file.name %>
+                                    </strong></div>
 
                                 <div class="meta">
                                     Created: <%= file.createdAt.toLocaleString() %>
@@ -126,10 +130,10 @@
                             </div>
                         </div>
                     </li>
-                <% }) %>
-            <% } else { %>
-                <li>No files yet</li>
-            <% } %>
+                    <% }) %>
+                        <% } else { %>
+                            <li>No files yet</li>
+                            <% } %>
         </ul>
 
         <div class="upload-box">
@@ -141,7 +145,7 @@
         </div>
 
         <a class="back" href="/folder">⬅ Back</a>
-    <% } %>
+        <% } %>
 
 </body>
 

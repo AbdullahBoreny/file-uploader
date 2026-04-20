@@ -5,13 +5,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+       body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: #f1f5f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background: #1e293b;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        a {
+            display: block;
+            margin: 10px 0;
+            padding: 12px;
+            text-decoration: none;
+            color: white;
+            background: #3b82f6;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+
+        a:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 
 <body>
-    <h1>hello there</h1>
-    <h2> <a href="/sign-up">sign up</a></h2>
-    <h2> <a href="/log-in">log in </a>
-    </h2>
+    <div class="container">
+        <h1>Hello there</h1>
+        <a href="/sign-up">Sign Up</a>
+        <a href="/log-in">Log In</a>
+    </div>
 </body>
 
 </html>

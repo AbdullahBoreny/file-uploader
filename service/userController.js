@@ -2,7 +2,7 @@ import { prisma } from '../ORM/lib/prisma.js';
 
 import passport from "passport";
 import initPassport from "./pass.js";
-import * as userService from './userService.js';
+import { validateUser } from './userService.js';
 import { matchedData, validationResult } from "express-validator";
 import bcrypt from "bcryptjs";
 initPassport();
@@ -42,15 +42,17 @@ export const userLogOutGet = (req, res, next) => {
 };
 
 export const createUserPost = [
-    userService.validateUser,
+    validateUser,
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).render("sign_form", {
+            res.status(400).render("sign_form", {
                 title: "Create user",
                 errors: errors.array(),
             });
+            return;
         }
+
 
         let { name, password } = matchedData(req);
 
