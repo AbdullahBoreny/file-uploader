@@ -3,15 +3,15 @@ const app = express();
 import passport from "passport";
 import path from "node:path";
 import morgan from "morgan";
+import cors from 'cors';
 import expressSession from "express-session";
 import "dotenv/config";
 import { PrismaSessionStore } from '@quixo3/prisma-session-store';
 import { prisma } from "./ORM/lib/prisma.js";
 app.use(express.static(path.join(import.meta.dirname, "public")));
 
-import userRouter from "./routes/userRouter.js";
-import uploadRouter from "./routes/uploadRouter.js";
 import { verifyUser } from "./controllers/userController.js";
+import routes from "./routes/routes.js";
 app.use(express.json());
 app.set("views", path.join(import.meta.dirname, "views"));
 app.set("view engine", "ejs");
@@ -37,9 +37,9 @@ app.use(
 app.use(passport.session());
 
 app.use(express.urlencoded({ extended: false }));
-
-app.use('/upload', verifyUser, uploadRouter);
-app.use(userRouter);
+app.use(cors());
+app.use('/upload', verifyUser, routes.uploadRouter);
+app.use('/users', routes.userRouter);
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(err.statusCode || 500).json({

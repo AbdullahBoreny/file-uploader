@@ -13,7 +13,7 @@ export const verifyUser = (req, res, next) => {
             { msg: "please sign in" }
         ];
 
-        res.render("sign_form", { errors: error });
+        res.status(401).json({ error });
 
         return;
     }
@@ -32,7 +32,6 @@ export const userLoginGet = (req, res) => {
 
 export const userLogOutGet = (req, res, next) => {
 
-
     req.logout((err) => {
         if (err) {
             return next(err);
@@ -46,14 +45,12 @@ export const createUserPost = [
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            res.status(400).render("sign_form", {
+            return res.status(400).render("sign_form", {
                 title: "Create user",
                 errors: errors.array(),
             });
-            return;
+
         }
-
-
         let { name, password } = matchedData(req);
 
         password = await bcrypt.hash(password, 10);

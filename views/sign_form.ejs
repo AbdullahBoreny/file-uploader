@@ -11,7 +11,7 @@
 
 <body>
 
-    <form method="post" action="/sign-up">
+    <form method="post" action="/users/sign-up">
 
         <%- include("partials/errors.ejs") %>
 
@@ -39,14 +39,14 @@
             <button type="button" onclick="localStorage.clear();
             window.location.reload()
             ">clear all</button>
-            <a href="/log-in">Already have an account?</a>
+            <a href="/users/log-in">Already have an account?</a>
 
 
 
             <%- include("scripts/script.ejs") %>
     </form>
 
-    <%- include("./test.ejs") %>
+    <%- include("./check.ejs") %>
 
 </body>
 

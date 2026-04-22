@@ -16,11 +16,11 @@ export const createFolderGet = async (req, res) => {
             }
         );
 
-        return res.render('create_folder', { folders: folders, message: message, errors: errors });
+         res.render('create_folder', { folders: folders, message: message, errors: errors });
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "couldn't vew folder form error" });
+        res.status(404).json({ error: "couldn't view folder error" });
     }
 };
 export const createFolderPost = [
