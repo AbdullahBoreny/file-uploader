@@ -36,7 +36,7 @@ export const userLogOutGet = (req, res, next) => {
         if (err) {
             return next(err);
         }
-        res.redirect("/log-in");
+        res.redirect("/users/log-in");
     });
 };
 
@@ -61,7 +61,7 @@ export const createUserPost = [
                 password,
             },
         });
-        res.redirect("/log-in");
+        res.redirect("/users/log-in");
 
 
     }
@@ -74,7 +74,7 @@ export const createUserGet = (req, res) => {
 export const userLoginPost =
     passport.authenticate("local", {
 
-        successRedirect: "/log-in",
-        failureRedirect: "/log-in",
+        successRedirect: "/users/log-in",
+        failureRedirect: "/users/log-in",
         failureMessage: true
     });

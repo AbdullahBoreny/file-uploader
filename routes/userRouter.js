@@ -1,9 +1,6 @@
 import { Router } from "express";
 import * as userController from '../controllers/userController.js';
 const userRouter = Router();
-userRouter.get('/', (req, res) => {
-    res.render('hello');
-});
 
 userRouter.get('/sign-up', userController.createUserGet);
 userRouter.post('/sign-up', userController.createUserPost);
