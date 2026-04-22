@@ -1,29 +1,27 @@
+/* Reset + base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Reset + base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-      
 
-        /* Layout container */
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            align-items: center;
-            font-family: Arial, sans-serif;
-        }
+/* Layout container */
+body {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: column;
+}
 
-        /* Header stays natural height */
-        header {
-            flex: 0 0 auto;
-        }
+/* Header stays natural height */
+header {
+    flex: 0 0 auto;
+}
 
-        /* Main takes remaining space */
-        main {
-            flex: 1;
-            padding: 20px;
-        }
+/* Main takes remaining space */
+main {
+    flex: 1;
+    padding: 20px;
+}
