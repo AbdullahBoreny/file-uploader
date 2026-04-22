@@ -13,8 +13,7 @@ export const verifyUser = (req, res, next) => {
             { msg: "please sign in" }
         ];
 
-        return res.status(401).json({ error });
-
+        return res.render("sign_form", { errors: error });
 
     }
     res.locals.user = req.user;

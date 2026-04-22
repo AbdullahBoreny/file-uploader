@@ -6,47 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
     <link rel="stylesheet" href="/sign_form.css">
-   
+<style>
+    .sign-page {
+        align-items: center;
+        display: flex;
+    }
+</style>
 </head>
 
 <body>
+    <div class="sign-page">
+        <form method="post" action="/users/sign-up">
 
-    <form method="post" action="/users/sign-up">
+            <%- include("partials/errors.ejs") %>
 
-        <%- include("partials/errors.ejs") %>
+                <label for="name">Name </label>
 
-            <label for="name">Name </label>
+                <input onfocus="styles.focus" onkeyup="saveValue(this)" autocomplete="additional-name" id="name"
+                    name="name" type="text" required>
+                <label for="email">Email</label>
+                <span class="error" aria-live="polite"></span>
+                <input onkeyup="saveValue(this)" autocomplete="email" id="email" name="email" minlength="10"
+                    type="email" required>
 
-            <input onfocus="styles.focus" onkeyup="saveValue(this)" autocomplete="additional-name" id="name" name="name"
-                type="text" required>
-            <label for="email">Email</label>
-            <span class="error" aria-live="polite"></span>
-            <input onkeyup="saveValue(this)" autocomplete="email" id="email" name="email" minlength="10" type="email"
-                required>
+                <label for="password">Password </label>
+                <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                    onkeyup="saveValue(this)" autocomplete="current-password" minlength="10" id="password"
+                    name="password" type="password" required>
 
-            <label for="password">Password </label>
-            <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                onkeyup="saveValue(this)" autocomplete="current-password" minlength="10" id="password" name="password"
-                type="password" required>
-
-            <label for="passwordConfirm">Confirm Password</label>
-            <input onkeyup="saveValue(this)" autocomplete="new-password" minlength="10" id="passwordConfirm"
-                name="passwordConfirm" type="password" required>
+                <label for="passwordConfirm">Confirm Password</label>
+                <input onkeyup="saveValue(this)" autocomplete="new-password" minlength="10" id="passwordConfirm"
+                    name="passwordConfirm" type="password" required>
 
 
-            <button type="submit">Sign Up</button>
-            <button type="button" onclick="localStorage.clear();
+                <button type="submit">Sign Up</button>
+                <button type="button" onclick="localStorage.clear();
             window.location.reload()
             ">clear all</button>
-            <a href="/users/log-in">Already have an account?</a>
+                <a href="/users/log-in">Already have an account?</a>
 
 
 
-            <%- include("scripts/script.ejs") %>
-    </form>
+                <%- include("scripts/script.ejs") %>
+        </form>
 
-    <%- include("./check.ejs") %>
+        <%- include("./check.ejs") %>
+
+    </div>
 
 </body>
 

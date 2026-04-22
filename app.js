@@ -40,15 +40,10 @@ app.use(expressEjsLayouts);
 app.set("layout", "layouts/layout");
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-app.get('/', (req, res, next) => {
-    if (req.user) {
-        res.redirect('/upload/folder');
-        return;
-    }
-    next();
-}, (req, res) => {
-    res.render('hello');
-});
+app.get('/',
+    (req, res) => {
+        res.render('hello');
+    });
 app.use('/upload', verifyUser, routes.uploadRouter);
 app.use('/users', routes.userRouter);
 app.use((err, req, res, next) => {
