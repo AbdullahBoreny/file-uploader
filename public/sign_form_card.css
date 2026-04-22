@@ -5,14 +5,6 @@
             font-family: 'Courier New', monospace;
         }
 
-        body {
-            background-color: var(--secondary);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
 
         .login-container {
             width: 100%;
