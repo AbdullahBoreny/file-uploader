@@ -12,6 +12,7 @@ app.use(express.static(path.join(import.meta.dirname, "public")));
 
 import { verifyUser } from "./controllers/userController.js";
 import routes from "./routes/routes.js";
+import expressEjsLayouts from "express-ejs-layouts";
 app.use(express.json());
 app.set("views", path.join(import.meta.dirname, "views"));
 app.set("view engine", "ejs");
@@ -35,7 +36,8 @@ app.use(
     })
 );
 app.use(passport.session());
-
+app.use(expressEjsLayouts);
+app.set("layout", "layouts/layout");
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.get('/', (req, res, next) => {
@@ -46,7 +48,6 @@ app.get('/', (req, res, next) => {
     next();
 }, (req, res) => {
     res.render('hello');
-    return;
 });
 app.use('/upload', verifyUser, routes.uploadRouter);
 app.use('/users', routes.userRouter);

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My App</title>
+
+    <style>
+        /* Reset + base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        /* Layout container */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header stays natural height */
+        header {
+            flex: 0 0 auto;
+        }
+
+        /* Main takes remaining space */
+        main {
+            flex: 1;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <%- include("../partials/header") %>
+
+    <main>
+        <%- body %>
+    </main>
+
+</body>
+
+</html>

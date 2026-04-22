@@ -3,7 +3,7 @@ import { prisma } from '../ORM/lib/prisma.js';
 import * as userService from '../service/userService.js';
 export const createFolderGet = async (req, res) => {
     try {
-
+        console.log(res.locals.user);
         const message = req.session.deleteMessage;
         const errors = req.session.errors;
         req.session.deleteMessage = null;

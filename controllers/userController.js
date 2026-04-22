@@ -13,10 +13,11 @@ export const verifyUser = (req, res, next) => {
             { msg: "please sign in" }
         ];
 
-        res.status(401).json({ error });
+        return res.status(401).json({ error });
 
-        return;
+
     }
+    res.locals.user = req.user;
     next();
 };
 export const userLoginGet = (req, res) => {
