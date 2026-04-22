@@ -5,60 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0f172a;
-            color: #f1f5f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .welcome {
-            display: flex;
-            text-align: center;
-            background: #1e293b;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        h1 {
-            margin-bottom: 30px;
-            font-size: 28px;
-        }
-
-        a {
-            margin: 10px 0;
-            padding: 12px;
-            text-decoration: none;
-            color: white;
-            background: #3b82f6;
-            border-radius: 8px;
-            transition: 0.2s;
-        }
-
-        a:hover {
-            background: #2563eb;
-            transform: translateY(-2px);
-        }
-    </style>
-</head>
-
-    <%- include("./partials/header") %>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <link rel="stylesheet" href="/bubbles.css">
 
 <body>
-    <div class="welcome">
-        <h1>Hello there</h1>
 
-        <div>
-            <%- include("./animate") %>
-        </div>
-    </div>
+    <section id="welcome">
+        <header>
+            <h1>
+                <svg width="9" height="12" viewBox="0 0 9 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M8.99774 0.146548C9.01762 0.0422957 8.90256 -0.0363551 8.8088 0.0173858L0.251555 4.92037C0.0956501 5.00998 0 5.17304 0 5.34926V6.00003V6.65069C0 6.8269 0.0956501 6.99008 0.251555 7.07958L8.8088 11.9827C8.90256 12.0363 9.01762 11.9577 8.99774 11.8534V0.146548Z"
+                        fill="currentColor" transform="translate(9 12) rotate(-180)" />
+                </svg>
+                <span>Upload your file everywhere</span>
+            </h1>
+            <div>
+                <p>When the document loads, a whole lot of particles will be created. They will travel across the
+                    canvas at random directions and speeds. As they leave the canvas, a new one should appear in its
+                    place randomly</p>
+                <p>There's two types of particles: lines and bubbles. Lines spin at random speeds and in both
+                    directions.</p>
 
+            </div>
+
+        </header>
+        <canvas id="canvas-particles"></canvas>
+            <%- include("./animate.ejs") %>
+
+    </section>
+
+    <%- include("./scripts/bubbles.ejs") %>
 </body>
 
 </html>
