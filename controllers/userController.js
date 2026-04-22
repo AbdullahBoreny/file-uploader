@@ -40,14 +40,23 @@ export const userLogOutGet = (req, res, next) => {
     });
 };
 
+
 export const createUserPost = [
     validateUser,
     async (req, res) => {
         const errors = validationResult(req);
+        const passwordErrors = errors.array().filter(err => err.path === 'password');
+        const nameErrors = errors.array().filter(err => err.path === 'name');
+        const emailErrors = errors.array().filter(err => err.path === 'email');
+        const passConfirmErrors = errors.array().filter(err => err.path === 'passwordConfirm');
+        console.log(nameErrors);
         if (!errors.isEmpty()) {
             return res.status(400).render("sign_form", {
                 title: "Create user",
                 errors: errors.array(),
+                passwordErrors,
+                emailErrors,
+                nameErrors, passConfirmErrors
             });
 
         }
