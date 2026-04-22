@@ -2,58 +2,54 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" href="/sign_form.css">
-<style>
-    .sign-page {
-        align-items: center;
-        display: flex;
-    }
-</style>
+    <link rel="stylesheet" href="/sign_form_card.css">
+    <style>
+
+    </style>
 </head>
 
 <body>
-    <div class="sign-page">
-        <form method="post" action="/users/sign-up">
 
-            <%- include("partials/errors.ejs") %>
-
-                <label for="name">Name </label>
-
-                <input onfocus="styles.focus" onkeyup="saveValue(this)" autocomplete="additional-name" id="name"
-                    name="name" type="text" required>
-                <label for="email">Email</label>
-                <span class="error" aria-live="polite"></span>
-                <input onkeyup="saveValue(this)" autocomplete="email" id="email" name="email" minlength="10"
-                    type="email" required>
-
-                <label for="password">Password </label>
-                <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                    onkeyup="saveValue(this)" autocomplete="current-password" minlength="10" id="password"
-                    name="password" type="password" required>
-
-                <label for="passwordConfirm">Confirm Password</label>
-                <input onkeyup="saveValue(this)" autocomplete="new-password" minlength="10" id="passwordConfirm"
-                    name="passwordConfirm" type="password" required>
-
-
-                <button type="submit">Sign Up</button>
-                <button type="button" onclick="localStorage.clear();
-            window.location.reload()
-            ">clear all</button>
-                <a href="/users/log-in">Already have an account?</a>
+    <%- include("partials/errors.ejs") %>
 
 
 
-                <%- include("scripts/script.ejs") %>
-        </form>
+        <div class="login-container">
+            <!-- <h1>LOGIN</h1> -->
+            <form method="post" action="/users/sign-up">
 
-        <%- include("./check.ejs") %>
+                <label for="name">USERNAME</label>
+                <input autocomplete="additional-name" onkeyup="saveValue(this)" name="name" type="name" id="name"
+                    placeholder="name">
+                <label for="email">EMAIL</label>
+                <input onkeyup="saveValue(this)" name="email" type="email" id="email" placeholder="your@email.com">
 
-    </div>
+                <label for="password">PASSWORD</label>
+                <input onkeyup="saveValue(this)" name="password" type="password" id="password">
+                
+
+                    <label for="passwordConfirm">CONFIRM PASSWORD</label>
+                    <input onkeyup="saveValue(this)" name="passwordConfirm" type="passwordConfirm" id="passwordConfirm">
+                    <button type="submit">Sign Up</button>
+                    <div class="footer">
+                        Already have an account? <a href="/users/log-in">Log In</a>
+                    </div>
+
+            </form>
+            <div style="display: flex;flex-direction: column;" class="right-sign">
+                <%- include("./check.ejs") %>
+                <div class="social-login">
+                    <div class="social-btn">G</div>
+                    <div class="social-btn">F</div>
+                    <div class="social-btn">X</div>
+                </div>
+            </div>
+        </div>
+        <%- include("scripts/script.ejs") %>
 
 </body>
 

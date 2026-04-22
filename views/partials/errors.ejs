@@ -1,11 +1,30 @@
-<!-- views/partials/errors.ejs -->
-<% if (locals.errors) {%>
-    <ul>
+<!DOCTYPE html>
+<html lang="en">
 
-        <% errors.forEach(function(error) { %>
-            <li>
-                <%= error.msg %>
-            </li>
-            <% }); %>
-    </ul>
-    <% } %>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Errors</title>
+    <style>
+        ul {
+            max-width: 500px;
+            font-size: 1rem;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <% if (locals.errors) {%>
+        <ul>
+
+            <% errors.forEach(function(error) { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% }); %>
+        </ul>
+        <% } %>
+</body>
+
+</html>
