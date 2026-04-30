@@ -41,9 +41,11 @@
     "@babel/core": "^7.29.0",
     "@babel/preset-env": "^7.29.2",
     "@eslint/js": "^10.0.1",
+    "@tailwindcss/cli": "^4.2.4",
     "@types/express": "^5.0.6",
     "eslint": "^10.2.0",
     "globals": "^17.5.0",
-    "nodemon": "^3.1.14"
+    "nodemon": "^3.1.14",
+    "tailwindcss": "^4.2.4"
   }
 }

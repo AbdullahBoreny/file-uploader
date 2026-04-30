@@ -1,4 +1,5 @@
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="/bubbles.css">
 
 <body>
@@ -6,22 +7,24 @@
     <section id="welcome">
         <header class="welcome-header">
             <h1
-                style="max-width: 200px;display: flex;justify-content: center; align-items: center; text-align: center;">
+                style="max-width: 400px;display: flex;justify-content: center; align-items: center; text-align: center;">
 
-                Upload your file everywhere
+                Upload, Organize, and Share Files Easily
             </h1>
             <div style="display: flex; justify-content: center;">
                 <p style=" max-width: 400px;">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis dolore iusto laborum facere totam
-                    odit
-                    eum autem nesciunt possimus commodi, magnam mollitia delectus sit iste consequuntur harum natus.
-                    Nam,
-                    quos!
+                    Store, organize, and access your files from anywhere.
+                    Upload documents, images, and projects securely with a clean and simple interface.
 
                 </p>
 
             </div>
             <%- include("./animate.ejs") %>
+                <div class="d-flex justify-content-center mt-4">
+                    <a href="/users/sign-up" class="changing-btn">
+                        Upload
+                    </a>
+                </div>
         </header>
         <canvas id="canvas-particles"></canvas>
 

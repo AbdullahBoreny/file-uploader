@@ -1,151 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Files</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            margin: 0;
-            padding: 20px;
-        }
 
-        h1 {
-            margin-bottom: 20px;
-            color: #333;
-        }
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+    }
 
-        ul {
-            list-style: none;
-            padding: 0;
-        }
+    h1 {
+        margin-bottom: 20px;
+        color: #333;
+    }
 
-        li {
-            background: white;
-            margin-bottom: 15px;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
+    ul {
+        list-style: none;
+        padding: 0;
+    }
 
-        .file {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+    li {
+        background: white;
+        margin-bottom: 15px;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
 
-        img {
-            border: 3px solid #4CAF50;
-            border-radius: 8px;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease;
-        }
+    .file {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
 
-        img:hover {
-            transform: scale(1.1);
-        }
+    img {
+        border: 3px solid #4CAF50;
+        border-radius: 8px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease;
+    }
 
-        .meta {
-            font-size: 14px;
-            color: #555;
-        }
+    img:hover {
+        transform: scale(1.1);
+    }
 
-        a,
-        button {
-            margin-top: 8px;
-            display: inline-block;
-            padding: 6px 10px;
-            border-radius: 6px;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-        }
+    .meta {
+        font-size: 14px;
+        color: #555;
+    }
 
-        a {
-            background: #4CAF50;
-            color: white;
-        }
+    a,
+    button {
+        margin-top: 8px;
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 6px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+    }
 
-        button {
-            background: #2196F3;
-            color: white;
-        }
+    a {
+        background: #4CAF50;
+        color: white;
+    }
 
-        form {
-            margin-top: 8px;
-        }
+    button {
+        background: #2196F3;
+        color: white;
+    }
 
-        .upload-box {
-            margin-top: 25px;
-            padding: 15px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
+    form {
+        margin-top: 8px;
+    }
 
-        #avatar {
-            margin-bottom: 10px;
-        }
+    .upload-box {
+        margin-top: 25px;
+        padding: 15px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
 
-        .back {
-            display: inline-block;
-            margin-top: 15px;
-        }
-    </style>
+    #avatar {
+        margin-bottom: 10px;
+    }
+
+    .back {
+        display: inline-block;
+        margin-top: 15px;
+    }
+    .files_container {
+        display: flex;
+    }
+</style>
 </head>
 
 <body>
+    <div class="folder_files">
+        <% if (typeof folder !=='undefined' ) { %>
+            <h1>📁 Folder: <%= folder.name %>
+            </h1>
 
-    <% if (typeof folder !=='undefined' ) { %>
-        <h1>📁 Folder: <%= folder.name %>
-        </h1>
+            <ul class="files_container">
+                <% if (folder.files.length> 0) { %>
+                    <% folder.files.forEach(function(file) { %>
+                        <li>
+                            <div class="file">
+                                <img height="50px" width="50px" src="/upload/file/<%=file.id%>/download">
 
-        <ul>
-            <% if (folder.files.length> 0) { %>
-                <% folder.files.forEach(function(file) { %>
-                    <li>
-                        <div class="file">
-                            <img height="50" width="50" src="/upload/file/<%=file.id%>/download">
+                                <div>
+                                    <div><strong>
+                                            <%= file.name %>
+                                        </strong></div>
 
-                            <div>
-                                <div><strong>
-                                        <%= file.name %>
-                                    </strong></div>
+                                    <div class="meta">
+                                        Created: <%= file.createdAt.toLocaleString() %>
+                                    </div>
 
-                                <div class="meta">
-                                    Created: <%= file.createdAt.toLocaleString() %>
+                                    <form method="GET" action="/upload/file/<%= file.id %>/link">
+                                        <button type="submit">Share Link (2 min)</button>
+                                    </form>
+
+                                    <a href="/upload/file/<%=file.id%>/download" download="<%= file.name %>">
+                                        Download
+                                    </a>
                                 </div>
-
-                                <form method="GET" action="/upload/file/<%= file.id %>/link">
-                                    <button type="submit">Share Link (2 min)</button>
-                                </form>
-
-                                <a href="/upload/file/<%=file.id%>/download" download="<%= file.name %>">
-                                    Download
-                                </a>
                             </div>
-                        </div>
-                    </li>
-                    <% }) %>
-                        <% } else { %>
-                            <li>No files yet</li>
-                            <% } %>
-        </ul>
+                        </li>
+                        <% }) %>
+                            <% } else { %>
+                                <li>No files yet</li>
+                                <% } %>
+            </ul>
 
-        <div class="upload-box">
-            <form method="POST" action="/upload/folder/<%= folder.id %>" enctype="multipart/form-data">
-                <input id="avatar" name="avatar" type="file">
-                <br>
-                <input type="submit" value="Add File">
-            </form>
-        </div>
+            <div class="upload-box">
+                <form method="POST" action="/upload/folder/<%= folder.id %>" enctype="multipart/form-data">
+                    <input id="avatar" name="avatar" type="file">
+                    <br>
+                    <input type="submit" value="Add File">
+                </form>
+            </div>
 
-        <a class="back" href="/upload/folder">⬅ Back</a>
-        <% } %>
+            <a class="back" href="/upload/folder">⬅ Back</a>
+            <% } %>
+    </div>
+
 
 </body>
 

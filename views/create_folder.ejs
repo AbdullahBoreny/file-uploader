@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<link rel="stylesheet" href="/create_folders.css">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Folders</title>
-    <link rel="stylesheet" href="/create_folders.css">
-
-    <style>
-
-    </style>
 </head>
 
 <body>
@@ -20,7 +10,7 @@
             <%= user.name %>!
         </div>
         <div class="message">
-            <%- include("partials/404.ejs") %>
+            <%- include("partials/create_message_err.ejs") %>
 
                 <% if (typeof message !=="undefined" ) { %>
                     <div class="sucessDelete">
