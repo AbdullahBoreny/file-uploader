@@ -1,95 +1,119 @@
-  body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            margin: 0;
-            padding: 20px;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f6f8;
+}
 
-        h1 {
-            margin-bottom: 20px;
-            color: #333;
-        }
+/* Title */
+h1 {
+    margin-bottom: 20px;
+    color: #222;
+}
 
-        .container {
-            max-width: 600px;
-            margin: auto;
-        }
+/* Main container */
+.container {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    gap: 1rem;
+    border-radius: 16px;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    background: white;
+}
 
-        .message {
-            margin-bottom: 15px;
-            color: #ff0000;
-        }
+/* Messages */
+.message {
+    margin-bottom: 15px;
+    color: #e74c3c;
+}
 
-      
+.sucessDelete {
+    color: #2ecc71;
+}
 
-        input[type="text"] {
-            padding: 8px;
-            width: 70%;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
+/* Input */
+input[type="text"] {
+    padding: 10px 12px;
+    width: 70%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+}
 
-        input[type="submit"] {
-            padding: 8px 12px;
-            border: none;
-            background: #4CAF50;
-            color: white;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+input[type="text"]:focus {
+    border-color: #4CAF50;
+}
 
-        ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+/* Submit button */
+input[type="submit"] {
+    padding: 10px 14px;
+    border: none;
+    background: #4CAF50;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
 
-        li {
-            background: white;
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+input[type="submit"]:hover {
+    background: #43a047;
+}
 
-        a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
+/* List */
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
-        a:hover {
-            color: #4CAF50;
-        }
+li {
+    background: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 
-        button {
-            background: #e74c3c;
-            color: white;
-            border: none;
-            padding: 6px 10px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        button:hover {
-            background: #c0392b;
-        }
+/* Links */
+a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
 
-        .folder-link {
-            flex: 1;
-        }
-        .sucessDelete{
-            color: rgb(59, 188, 0);
-        }
+a:hover {
+    color: #4CAF50;
+}
 
-        .actions {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
+/* Folder link takes space */
+.folder-link {
+    flex: 1;
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Buttons */
+button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #c0392b;
+}

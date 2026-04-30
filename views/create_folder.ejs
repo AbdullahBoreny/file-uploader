@@ -1,14 +1,13 @@
 <link rel="stylesheet" href="/create_folders.css">
 
-</head>
 
 <body>
-
+    <h1 class="name">
+        Hello
+        <%= user.name %>!
+    </h1>
     <div class="container">
-        <div class="name">
-            Hello
-            <%= user.name %>!
-        </div>
+
         <div class="message">
             <%- include("partials/create_message_err.ejs") %>
 
@@ -47,9 +46,8 @@
                             <li>No folders yet</li>
                             <% } %>
         </ul>
-
     </div>
-
+    <a href="/">go back</a>
 </body>
 
 </html>
