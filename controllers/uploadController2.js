@@ -4,7 +4,7 @@ import "dotenv/config";
 import { prisma } from '../ORM/lib/prisma.js';
 
 const storage = multer.memoryStorage();
-const upload = multer({ storage: storage, limits: { fileSize: 300 * 1024 } });
+const upload = multer({ storage: storage });
 const supabase = createClient(process.env["SUB_URL"], process.env["SUB_KEY"]);
 
 
