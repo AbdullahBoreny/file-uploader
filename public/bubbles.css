@@ -13,17 +13,16 @@
 *:after {
     box-sizing: border-box;
 }
+
 .changing-btn {
     padding: 10px;
     font-size: 1.5rem;
     border-radius: 10px 10px;
-    background: linear-gradient(
-        45deg,
-        #ff6b6b,
-        #6c5ce7,
-        #00cec9,
-        #ff6b6b
-    );
+    background: linear-gradient(45deg,
+            #ff6b6b,
+            #6c5ce7,
+            #00cec9,
+            #ff6b6b);
 
     background-size: 300% 300%;
     color: white;
@@ -32,19 +31,7 @@
     animation: gradientMove 6s ease infinite;
 }
 
-@keyframes gradientMove {
-    0% {
-        background-position: 0% 50%;
-    }
 
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
 
 .welcome-header {
     display: flex;

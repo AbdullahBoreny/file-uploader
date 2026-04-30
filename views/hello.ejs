@@ -1,35 +1,35 @@
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="/bubbles.css">
+<%- include("./partials/header") %>
 
-<body>
+    <body>
 
-    <section id="welcome">
-        <header class="welcome-header">
-            <h1
-                style="max-width: 400px;display: flex;justify-content: center; align-items: center; text-align: center;">
+        <section id="welcome">
+            <header class="welcome-header">
+                <h1
+                    style="max-width: 400px;display: flex;justify-content: center; align-items: center; text-align: center;">
 
-                Upload, Organize, and Share Files Easily
-            </h1>
-            <div style="display: flex; justify-content: center;">
-                <p style=" max-width: 400px;">
-                    Store, organize, and access your files from anywhere.
-                    Upload documents, images, and projects securely with a clean and simple interface.
+                    Upload, Organize, and Share Files Easily
+                </h1>
+                <div style="display: flex; justify-content: center;">
+                    <p style=" max-width: 400px;">
+                        Store, organize, and access your files from anywhere.
+                        Upload documents, images, and projects securely with a clean and simple interface.
 
-                </p>
+                    </p>
 
-            </div>
-            <%- include("./animate.ejs") %>
-                <div class="d-flex justify-content-center mt-4">
-                    <a href="/users/sign-up" class="changing-btn">
-                        Upload
-                    </a>
                 </div>
-        </header>
-        <canvas id="canvas-particles"></canvas>
+                <%- include("./animate.ejs") %>
+                    <div class="d-flex justify-content-center mt-4">
+                        <a href="/users/sign-up" class="changing-btn">
+                            Upload
+                        </a>
+                    </div>
+            </header>
+            <canvas id="canvas-particles"></canvas>
 
 
-    </section>
+        </section>
 
-    <%- include("./scripts/bubbles.ejs") %>
-</body>
+        <%- include("./scripts/bubbles.ejs") %>
+    </body>
