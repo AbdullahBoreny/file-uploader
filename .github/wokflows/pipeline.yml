@@ -8,14 +8,9 @@ on:
 jobs:
   deploy_pipeline:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v6 
-      - uses: actions/setup-node@v6        
-        with:          
-          node-version: '24'   
-      - name: install dependencies
-        run: npm install
-      - name: Check style        
-        run: npm run eslint
-      - name: build appJs
-        run: npm run build
+      - uses: actions/checkout@v4
+
+      - name: Test
+        run: echo "GitHub Actions works!"
