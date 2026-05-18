@@ -5,6 +5,8 @@
   "type": "module",
   "main": "app.js",
   "scripts": {
+    "build":"node app.js",
+    "eslint": "eslint './**/*.{js,jsx}'",
     "dev": "nodemon --env-file=.env app.js",
     "test": "jest"
   },

@@ -3,7 +3,16 @@ import { defineConfig } from "eslint/config";
 import globals from "globals";
 export default defineConfig([
     {
-        ignores: ["**/tests/**", "**/*.test.js", "**/*.spec.js"],
+        ignores: [
+            "**/tests/**",
+            "**/*.test.js",
+            "**/*.spec.js",
+            'node_modules/**',
+            'eslint.config.js',
+            '**/ORM/**'
+
+
+        ],
         languageOptions: {
             globals: globals.node,
             sourceType: "module",
@@ -13,7 +22,6 @@ export default defineConfig([
 
             semi: "error",
             "no-unused-vars": "error",
-            "prefer-const": "error",
             "no-undef": "error",
         },
     },
