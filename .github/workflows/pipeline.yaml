@@ -19,3 +19,6 @@ jobs:
         run: npm run eslint
       - name: build appJs
         run: npm run build
+        env:
+          SUB_URL: ${{ secrets.SUB_URL }}
+          SUB_KEY: ${{ secrets.SUB_KEY }}
