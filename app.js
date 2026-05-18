@@ -44,6 +44,7 @@ app.get('/',
     (req, res) => {
         res.render('hello');
     });
+app.get('/version', (req, res) => res.send("1"));
 app.use('/upload', verifyUser, routes.uploadRouter);
 app.use('/users', routes.userRouter);
 app.use((err, req, res, next) => {
