@@ -55,9 +55,9 @@ app.use((err, req, res, next) => {
         message: err.message || 'Internal Server Error'
     });
 });
-
-app.listen(process.env.PORT, () => {
-    console.log(`Backend running on http://localhost:${process.env.PORT}/`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Backend running on http://localhost:${PORT}/`);
 });
 
 
