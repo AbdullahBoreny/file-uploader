@@ -1,9 +1,9 @@
-name: Deploy File
+name: Deploy
 
 on:
   push:
     branches:
-      - main
+      - pipeline
 
 jobs:
   build_and_test:
