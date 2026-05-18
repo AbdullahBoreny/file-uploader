@@ -8,7 +8,7 @@ const upload = multer({ storage: storage });
 const supabase = createClient(process.env["SUB_URL"], process.env["SUB_KEY"]);
 
 
-export const fileDownloadGet = async (req, res) => {
+export const fileDownloadGet = async (req, res, next) => {
 
     const { path } = await prisma.file.findUnique({
         where: { id: Number(req.params.fileId) }
@@ -18,6 +18,9 @@ export const fileDownloadGet = async (req, res) => {
         .storage
         .from('boreny')
         .download(path);
+    if (error) {
+        next(error);
+    }
     const buf = await data.arrayBuffer();
 
     res.send(Buffer.from(buf));
@@ -40,6 +43,7 @@ export const uploadRemotely = async (req, res, next) => {
             contentType: file.mimetype,
             upsert: true,
         });
+    console.log(data);
     if (error) {
         console.error("Upload error:", error);
         return res.status(500).json(error.message);

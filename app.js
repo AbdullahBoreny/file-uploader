@@ -47,6 +47,7 @@ app.get('/',
 app.get('/version', (req, res) => res.send("1"));
 app.use('/upload', verifyUser, routes.uploadRouter);
 app.use('/users', routes.userRouter);
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(err.statusCode || 500).json({
