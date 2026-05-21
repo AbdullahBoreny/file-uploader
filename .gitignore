@@ -3,3 +3,6 @@ node_modules
 .env
 uploads
 **/.env**
+
+pg_data
+redis-data
