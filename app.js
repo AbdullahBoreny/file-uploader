@@ -9,7 +9,7 @@ import "dotenv/config";
 import { PrismaSessionStore } from '@quixo3/prisma-session-store';
 import { prisma } from "./ORM/lib/prisma.js";
 app.use(express.static(path.join(import.meta.dirname, "public")));
-
+import client from './service/redis.js';
 import { verifyUser } from "./controllers/userController.js";
 import routes from "./routes/routes.js";
 import expressEjsLayouts from "express-ejs-layouts";
@@ -45,6 +45,12 @@ app.get('/',
         res.render('hello');
     });
 app.get('/version', (req, res) => res.send("1"));
+app.get('/redis', async (req, res) => {
+
+    let count = await client.get("count");
+    res.json(count);
+}
+);
 app.use('/upload', verifyUser, routes.uploadRouter);
 app.use('/users', routes.userRouter);
 // eslint-disable-next-line no-unused-vars

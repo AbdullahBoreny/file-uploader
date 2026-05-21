@@ -1,0 +1,29 @@
+services:
+  server:
+    image: file-uploader 
+    depends_on:
+      redis:
+        condition: service_started
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+   
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=${DATABASE_URL}
+      - SUB_KEY=${SUB_KEY}
+      - SUB_URL=${SUB_URL}
+    ports:
+      - 3000:3000
+   
+  redis:
+    image: redis
+    command: ['redis-server', '--appendonly', 'yes']
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:
